@@ -1,0 +1,300 @@
+Generations: 1
+Population: 2
+Average fitnesses: [0.038]
+Best fitnesses: [0.051]
+
+Generations: 1
+Population: 2
+Average fitnesses: [0.038]
+Best fitnesses: [0.051]
+
+Generations: 0
+Population: 16
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 2
+Average fitnesses: [0.154]
+Best fitnesses: [0.154]
+
+Generations: 1
+Population: 3
+Average fitnesses: [100.031]
+Best fitnesses: [100.047]
+
+Generations: 1
+Population: 2
+Average fitnesses: [50.051]
+Best fitnesses: [50.062]
+
+Generations: 1
+Population: 1
+Average fitnesses: [200.017]
+Best fitnesses: [200.017]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 2
+Average fitnesses: [10.841]
+Best fitnesses: [11.485]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 30
+Average fitnesses: [100.715]
+Best fitnesses: [102.75]
+
+Generations: 2
+Population: 30
+Average fitnesses: [100.715, 100.715]
+Best fitnesses: [102.75, 102.843]
+
+Generations: 3
+Population: 30
+Average fitnesses: [100.715, 100.715, 101.116]
+Best fitnesses: [102.75, 102.843, 103.768]
+
+Generations: 4
+Population: 30
+Average fitnesses: [100.715, 100.715, 101.116, 100.53]
+Best fitnesses: [102.75, 102.843, 103.768, 102.843]
+
+Generations: 5
+Population: 30
+Average fitnesses: [100.715, 100.715, 101.116, 100.53, 100.715]
+Best fitnesses: [102.75, 102.843, 103.768, 102.843, 101.918]
+
+Generations: 5
+Population: 30
+Average fitnesses: [100.715, 100.715, 101.116, 100.53, 100.715]
+Best fitnesses: [102.75, 102.843, 103.768, 102.843, 101.918]
+
+Generations: 1
+Population: 30
+Average fitnesses: [52.565]
+Best fitnesses: [54.75]
+
+Generations: 2
+Population: 30
+Average fitnesses: [52.565, 53.293]
+Best fitnesses: [54.75, 55.795]
+
+Generations: 3
+Population: 30
+Average fitnesses: [52.565, 53.293, 52.945]
+Best fitnesses: [54.75, 55.795, 54.845]
+
+Generations: 3
+Population: 30
+Average fitnesses: [52.565, 53.293, 52.945]
+Best fitnesses: [54.75, 55.795, 54.845]
+
+Generations: 1
+Population: 20
+Average fitnesses: [49.047]
+Best fitnesses: [50.951]
+
+Generations: 2
+Population: 20
+Average fitnesses: [49.047, 49.0]
+Best fitnesses: [50.951, 49.999]
+
+Generations: 3
+Population: 20
+Average fitnesses: [49.047, 49.0, 49.047]
+Best fitnesses: [50.951, 49.999, 49.999]
+
+Generations: 4
+Population: 20
+Average fitnesses: [49.047, 49.0, 49.047, 48.524]
+Best fitnesses: [50.951, 49.999, 49.999, 49.999]
+
+Generations: 5
+Population: 20
+Average fitnesses: [49.047, 49.0, 49.047, 48.524, 48.19]
+Best fitnesses: [50.951, 49.999, 49.999, 49.999, 49.047]
+
+Generations: 6
+Population: 20
+Average fitnesses: [49.047, 49.0, 49.047, 48.524, 48.19, 50.094]
+Best fitnesses: [50.951, 49.999, 49.999, 49.999, 49.047, 50.951]
+
+Generations: 7
+Population: 20
+Average fitnesses: [49.047, 49.0, 49.047, 48.524, 48.19, 50.094, 50.38]
+Best fitnesses: [50.951, 49.999, 49.999, 49.999, 49.047, 50.951, 50.951]
+
+Generations: 7
+Population: 20
+Average fitnesses: [49.047, 49.0, 49.047, 48.524, 48.19, 50.094, 50.38]
+Best fitnesses: [50.951, 49.999, 49.999, 49.999, 49.047, 50.951, 50.951]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 30
+Average fitnesses: [82.722]
+Best fitnesses: [83.456]
+
+Generations: 1
+Population: 30
+Average fitnesses: [82.722]
+Best fitnesses: [83.456]
+
+Generations: 1
+Population: 30
+Average fitnesses: [44.476]
+Best fitnesses: [45.568]
+
+Generations: 1
+Population: 30
+Average fitnesses: [44.476]
+Best fitnesses: [45.568]
+
+Generations: 1
+Population: 30
+Average fitnesses: [31.633]
+Best fitnesses: [33.28]
+
+Generations: 1
+Population: 30
+Average fitnesses: [31.633]
+Best fitnesses: [33.28]
+
+Generations: 1
+Population: 30
+Average fitnesses: [97.209]
+Best fitnesses: [97.806]
+
+Generations: 1
+Population: 30
+Average fitnesses: [97.209]
+Best fitnesses: [97.806]
+
+Generations: 1
+Population: 30
+Average fitnesses: [53.451]
+Best fitnesses: [54.337]
+
+Generations: 1
+Population: 30
+Average fitnesses: [53.451]
+Best fitnesses: [54.337]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 30
+Average fitnesses: [30.398]
+Best fitnesses: [31.237]
+
+Generations: 1
+Population: 30
+Average fitnesses: [30.398]
+Best fitnesses: [31.237]
+
+Generations: 1
+Population: 30
+Average fitnesses: [25.816]
+Best fitnesses: [26.848]
+
+Generations: 1
+Population: 30
+Average fitnesses: [25.816]
+Best fitnesses: [26.848]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 30
+Average fitnesses: [25.664]
+Best fitnesses: [26.444]
+
+Generations: 2
+Population: 30
+Average fitnesses: [25.664, 25.857]
+Best fitnesses: [26.444, 26.79]
+
+Generations: 2
+Population: 30
+Average fitnesses: [25.664, 25.857]
+Best fitnesses: [26.444, 26.79]
+
+Generations: 1
+Population: 6
+Average fitnesses: [25.549]
+Best fitnesses: [26.502]
+
+Generations: 2
+Population: 1
+Average fitnesses: [25.549, 25.462]
+Best fitnesses: [26.502, 25.462]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 8
+Average fitnesses: [25.209]
+Best fitnesses: [25.635]
+
+Generations: 1
+Population: 8
+Average fitnesses: [25.209]
+Best fitnesses: [25.635]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 6
+Average fitnesses: [25.231]
+Best fitnesses: [25.462]
+
+Generations: 2
+Population: 3
+Average fitnesses: [25.231, 25.173]
+Best fitnesses: [25.462, 25.347]
+
+Generations: 3
+Population: 1
+Average fitnesses: [25.231, 25.173, 25.404]
+Best fitnesses: [25.462, 25.347, 25.404]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
