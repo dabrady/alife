@@ -298,3 +298,433 @@ Population: 30
 Average fitnesses: []
 Best fitnesses: []
 
+Generations: 1
+Population: 3
+Average fitnesses: [25.212]
+Best fitnesses: [25.404]
+
+Generations: 2
+Population: 3
+Average fitnesses: [25.212, 25.25]
+Best fitnesses: [25.404, 25.347]
+
+Generations: 3
+Population: 1
+Average fitnesses: [25.212, 25.25, 25.116]
+Best fitnesses: [25.404, 25.347, 25.116]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 3
+Average fitnesses: [25.077]
+Best fitnesses: [25.173]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 2
+Average fitnesses: [40.433]
+Best fitnesses: [40.52]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 8
+Average fitnesses: [40.152]
+Best fitnesses: [40.404]
+
+Generations: 2
+Population: 1
+Average fitnesses: [40.152, 40.52]
+Best fitnesses: [40.404, 40.52]
+
+Generations: 3
+Population: 1
+Average fitnesses: [40.152, 40.52, 40.058]
+Best fitnesses: [40.404, 40.52, 40.058]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 6
+Average fitnesses: [40.356]
+Best fitnesses: [40.924]
+
+Generations: 1
+Population: 6
+Average fitnesses: [40.356]
+Best fitnesses: [40.924]
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 0
+Population: 30
+Average fitnesses: []
+Best fitnesses: []
+
+Generations: 1
+Population: 3
+Average fitnesses: [40.135]
+Best fitnesses: [40.404]
+
+Generations: 2
+Population: 1
+Average fitnesses: [40.135, 40.116]
+Best fitnesses: [40.404, 40.116]
+

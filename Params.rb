@@ -7,8 +7,8 @@
 
 module Params
     PI             = Math::PI
-    HALF_PI        = PI / 2
-    TWO_PI         = PI * 2
+    HALF_PI        = PI/2
+    TWO_PI         = PI*2
     WINDOW_WIDTH   = 1920
     WINDOW_HEIGHT  = 1080
     NUM_INPUTS     = 4
@@ -18,26 +18,54 @@ module Params
     ACTIVATION_RESPONSE = 1
     BIAS           = 1
     MAX_WEIGHT     = 1/Math.sqrt(NUM_INPUTS)
-    MAX_TURN_ANGLE     = 0.078 # in radians; translates to ~ 4.5*
+    MAX_TURN_ANGLE = PI/40 # in radians; translates to ~ 4.5*
     MAX_SPEED      = 3.0
     NUM_GOALS      = 40
     NUM_AGENTS     = 30
     NUM_TICKS      = 1800 # 60/sec = 30 sec generations
+    FOOD_SCALE     = 0.5
+    FOOD_WIDTH     = 30 # pixel width of Food sprite; used for food detection by agents
     BASE_FITNESS   = 355.0
     MAX_FITNESS    = 800.0
     DEATH          = -0.2
     AGENT_SCALE    = 1
-    FOOD_SCALE     = 0.5
-    FOOD_WIDTH     = 30 # pixel width of Food sprite; used for food detection by agents
+    AGENT_REACH    = FOOD_SCALE * FOOD_WIDTH
+    AGENT_NUM_SENSORS = 6
+    AGENT_VISUAL_RANGE = HALF_PI # ~90*
+    AGENT_SENSOR_RANGE_THETA = 15*PI/180 # translates to a 15* field of view
+    AGENT_SENSOR_RANGE_MAG   = 600  # with edge vectors of magnitude 600
     XOVER_RATE     = 0.7
     MUTATION_RATE  = 0.1
     MAX_PERTURBATION = 0.3
     NUM_ELITE      = 4
     NUM_COPIES_ELITE = 1 
 
+    ## Some utility functions.
     # Converter for angles. Converts from radians to degrees.
-    def Params.rad_to_degrees(n)
+    def Params::rad_to_degrees(n)
         n * 180/PI
+    end
+
+    # Rotate a head point about an origin point THETA degrees.
+    def Params::rotate_point(origin, head, theta)
+        ox, oy = origin
+        hx, hy = head
+        sin = Math.sin(theta)
+        cos = Math.cos(theta)
+        # Translate point to origin, rotate by theta, and translate back.
+        x = cos * (hx - ox) - sin * (hy - oy) + ox
+        y = sin * (hx - ox) + cos * (hy - oy) + oy
+        return x,y
+    end
+
+    # Calculate the distance between two points.
+    def Params::distance_to(x1, y1, x2, y2)
+        return Math.hypot(x2-x1, y2-y1)
+    end
+
+    # Convert an angle to a directional vector.
+    def Params::directional_vector(theta)
+        return Math.cos(theta), Math.sin(theta)
     end
 end
 
@@ -132,6 +160,11 @@ class Matrix
     # so I've written one here.
     def size()
         row_size * column_size
+    end
+
+    # Not sure why this isn't already built in.
+    def dimensions()
+        [row_size, column_size]
     end
 end
 

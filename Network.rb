@@ -1,6 +1,9 @@
-# ALife2.rb
+# Network.rb
+# 
 # Daniel Brady, Spring 2014
-# A matrix-based version of ALife.
+# 
+# This module outlines the basic functions necessary to build and operate a
+# matrix-based neural network.
 
 require_relative "Params"
 require 'matrix' # also defines Vector
@@ -9,6 +12,25 @@ require 'CSV'
 module Network
       # The activation function.
     ACTIVATION_FN = ->(x) {x/20}  # Scale the output
+
+    # Build a basic network based on predefined parameters.
+    def build_network()
+        @layers = []
+        # Create the hidden layers, num_per_hiddenX(num_inputs+1) matrices.
+        # The +1 accounts for a bias vector that is horizontally concatenated
+        # upon creation of the layer.
+        @num_hidden_layers.times do
+            # Add a new layer (bias vector is concatenated in the creation
+            # method).
+            @layers << build_layer(@max_weight, @num_per_hidden, @num_inputs)
+        end
+        # Create output layer, an num_outputsX(num_per_hidden+1) matrix
+        # (again, +1 accounts for the bias).
+        @layers << build_layer(@max_weight, @num_outputs, @num_per_hidden)
+        # Calculate weights
+        weights # produces attribute @weights upon first invocation
+        @num_weights = @weights.size
+    end
 
     # Weight initialization function. Returns an mx(n+1) matrix randomly
     # initialized in
@@ -31,7 +53,7 @@ module Network
     # Returns the output matrix and the net input matrix.
     def activate_layer(inputs,
                        weights,
-                       fn=ACTIVATION_FN,
+                       fn=Network::ACTIVATION_FN,
                        bias=Matrix.build(inputs.column_size, 1){1})
         net_input = weights * inputs.vert_extend(bias)
         output = activate(net_input, fn)
@@ -41,7 +63,7 @@ module Network
     # Apply the feed-forward function to the entire network.
     # Expects a flat array of inputs.
     # Returns the outputs as a flattened array of length @num_outputs
-    def respond_to(inputs, activation_fn=ACTIVATION_FN)
+    def respond_to(inputs, activation_fn=Network::ACTIVATION_FN)
         outputs = Matrix.column_vector inputs
         net = nil
         @layers.each do |layer|
@@ -53,13 +75,13 @@ module Network
     end
 
     # Maps the activation function component-wise over a matrix.
-    def activate(matrix, fn=ACTIVATION_FN)
+    def activate(matrix, fn=Network::ACTIVATION_FN)
         matrix.map { |x| fn.(x) }
     end
 
-    # Converts an mx1 output matrix to a mx1 number vector.
+    # Converts an mx1 output matrix to a number array of size m.
     def convert(output_matrix)
-        # Map over the column vectors of this matrix, creating a vector of the
+        # Map over the column vectors of this matrix, creating an array of the
         # translated columns.
         return output_matrix.column_vectors
             .map{|col| col.map {|val| [-Params::MAX_TURN_ANGLE,

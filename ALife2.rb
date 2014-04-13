@@ -12,6 +12,7 @@ require 'gosu'
  "Food"].each {|file| require_relative file}
 
 class ALife2 < Gosu::Window
+    attr_reader :agents, :env
 	def initialize(goal=Food, agent=BasicAgent, brain=BasicNet)
 		# Create a WIDTH x HEIGHT non-fullscreen window.
 		super Params::WINDOW_WIDTH, Params::WINDOW_HEIGHT, false
@@ -75,7 +76,7 @@ class ALife2 < Gosu::Window
     # This is the meat and potatoes of the entire simulation.
     def update()
         # Make sure we've still got a population to update!
-        raise ExtinctionEvent, "Everyone has died." if @agents.size.zero?
+        raise ExtinctionEvent, "Everyone has died." if @agents.empty?
 
         # Run the agents through a generation cycle.
         # During this iteration, each agent's neural net is updated with the
@@ -207,5 +208,8 @@ class ALife2 < Gosu::Window
     end
 end
 
-ALife2.new.show
+sim = ALife2.new(Food, SeekingAgent, SeekingNet)
+sim.show
+
+
 # b = SeekingAgent.new(ALife2.new)
