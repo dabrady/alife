@@ -179,11 +179,3 @@ class SeekingNet < BasicNet
         return convert(outputs)[0]
     end
 end
-
-# s = SeekingNet.new
-# puts s.inspect
-# inputs = Array.new(4){rand}
-# s.respond_to inputs
-# p s.num_weights
-# puts "#{s.layers[0].row_size}x#{s.layers[0].column_size}"
-# puts "#{s.layers[1].row_size}x#{s.layers[1].column_size}"

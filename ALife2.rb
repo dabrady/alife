@@ -17,7 +17,7 @@ class ALife2 < Gosu::Window
 		# Create a WIDTH x HEIGHT non-fullscreen window.
 		super Params::WINDOW_WIDTH, Params::WINDOW_HEIGHT, false
 		# Title of the window.
-		self.caption = "A-Life Simulator 3"
+		self.caption = "ALife Simulator 3"
 
         # The background color
         @bg_color = Gosu::Color.new(255, 10, 72, 13)
@@ -62,6 +62,10 @@ class ALife2 < Gosu::Window
             agent.set_weights(chromo.weights)
             @population[agent] = chromo
         end
+
+        # Henry, an agent whom we will monitor throughout the duration.
+        @Henry = @agents[rand(0..@agents.size)]
+        puts @Henry.report(@population[@Henry])
 
         # Average fitness per generation (used in graphing)
         @fitness_averages = []
@@ -108,6 +112,9 @@ class ALife2 < Gosu::Window
                     @population[agent].fitness = agent.update_fitness
                 end
 
+                # Increment age counter.
+                agent.update_age
+
                 # Check if this agent has died.
                 if agent.dead?
                     @population.delete agent
@@ -117,6 +124,9 @@ class ALife2 < Gosu::Window
         else
             # Another generation has been completed.
             # Time to run the GA and update the agents with new brains.
+
+            # Keep track of Henry.
+            puts @Henry.report(@population[@Henry])
 
             # Increment the generation counter.
             @generation += 1
@@ -183,7 +193,15 @@ class ALife2 < Gosu::Window
 
     def save_stats()
         File.open("stats.txt", "a") {|file|
-            file.write "Generations: #{@generation}\nPopulation: #{@agents.size}\nAverage fitnesses: #{@fitness_averages}\nBest fitnesses: #{@hall_of_fame}\n\n"
+            file.write \
+"#{Time.now.asctime}{
+    Generations: #{@generation}
+    Population: #{@agents.size}
+    Average fitnesses: #{@fitness_averages}
+    Best fitnesses: #{@hall_of_fame}
+    HENRY'S REPORT:
+    #{@Henry.report @population[@Henry]}
+}\n"
         }
     end
 

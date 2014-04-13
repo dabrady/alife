@@ -35,6 +35,13 @@ module Agency
                          @color)
  	end
 
+    def report(genome=nil)
+        "#{self.to_s}
+        Age: #{@age}
+        Genetics: #{genome}
+        Goals reached: #{@goals_reached}\n"
+    end
+
     # Used to turn the agent (update its angle and heading).
  	def turn(this_much)
         @angle += this_much
@@ -126,6 +133,8 @@ module Agency
                      :y => rand((0.5*@sprite.width)..Params::WINDOW_HEIGHT-(0.5*@sprite.height))}
         # Reset fitness to base fitness
         @fitness = Params::BASE_FITNESS
+        # Reset age to zero.
+        @age = 0
         # Reset rotation to random angle (in radians).
         @angle = rand(0.0..Params::TWO_PI)
     end
@@ -152,6 +161,10 @@ module Agency
     # returns false.
     def dead?()
         @fitness <= 0
+    end
+
+    def update_age()
+        @age += 1
     end
 
     def slowly_die()

@@ -25,7 +25,7 @@ module Params
     NUM_TICKS      = 1800 # 60/sec = 30 sec generations
     FOOD_SCALE     = 0.5
     FOOD_WIDTH     = 30 # pixel width of Food sprite; used for food detection by agents
-    BASE_FITNESS   = 355.0
+    BASE_FITNESS   = 375.0
     MAX_FITNESS    = 800.0
     DEATH          = -0.2
     AGENT_SCALE    = 1

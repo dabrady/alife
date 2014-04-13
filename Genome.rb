@@ -52,6 +52,8 @@ class Genome
     def map!(&block)
         @weights.map! &block
     end
+
+    def to_s(); "#<#{self.class}: fitness=#@fitness, weights=#@weights}>";end
 end
 
 # x = Genome.new
