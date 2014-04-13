@@ -44,6 +44,7 @@ class ALife2 < Gosu::Window
         # Number of weights in the neural net of each agent.
         # Assumes a uniform population (all Agents are the same type).
         @num_weights = @agents[0].num_weights
+        puts @num_weights, "\n"
 
         # Create the genetic algorithm for the simulation.
         @GA = GenAlg.new(@num_agents,

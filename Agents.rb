@@ -71,6 +71,12 @@ class SeekingAgent < BasicAgent
 
         # The neural network behind this little guy's smarts.
         @brain = neural_net.new self
+        # Calculate and store number of weights
+        num_weights
+    end
+
+    def num_weights()
+        @num_weights ||= @brain.weights.size
     end
 
     # Update this agent's field of view with every turn.
