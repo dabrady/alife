@@ -13,6 +13,7 @@ require 'gosu'
 # A BasicAgent moves in random directions, never using its brain.
 class BasicAgent; include Agency
     attr_reader :position, :heading, :angle, :fitness
+    attr_accessor :sprite
 
     def initialize(window, neural_net=nil)
         # The age of this agent in game ticks.
@@ -147,12 +148,16 @@ class SeekingAgent < BasicAgent
     # because right now this agent's brain is the only one calling this method,
     # and the brain has access to a sorted env.
     def get_signal_from(sensor, env_in_range)
-    	# Return the highest number possible (weakest signal) if nothing is in
+    	# Return a ridiculously large number (weakest signal) if nothing is in
     	# range. Note we can't use Infinity because it doesn't play nicely
-    	# with arithmetic (we get NaNs all over the network).
-    	return Float::MAX if env_in_range.empty?
+    	# with arithmetic (we get NaNs all over the network). We also can't
+        # use Float::MAX because any sort of addition turns that into Infinity.
+    	return 1000000.0 if env_in_range.empty?
     	closest = env_in_range[0]
-    	Params::distance_to(*@position.values, closest.x, closest.y)
+    	signal = Params::distance_to(*@position.values, closest.x, closest.y)
+        # Bound the signal so we're not dealing with absurdly small (close)
+        # numbers.
+        return [signal, 1.0].max
     end
 
     # Parses the environment based on the range of a single sensor.

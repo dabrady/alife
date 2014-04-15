@@ -135,6 +135,8 @@ module Agency
         @fitness = Params::BASE_FITNESS
         # Reset age to zero.
         @age = 0
+        # Reset number of goals reached.
+        @goals_reached = 0
         # Reset rotation to random angle (in radians).
         @angle = rand(0.0..Params::TWO_PI)
     end
@@ -145,7 +147,6 @@ module Agency
  	def set_weights(weights); self;end
 
     # Updates this agent's fitness (and goals reached in tandem).
-    # Side effect of assignment is the returning of the new fitness.
     # Including classes need to have a @fitness, @goals_reached, and
     # @deathly_illness to have their fitness updated.
     def update_fitness(goal=nil)
@@ -155,6 +156,8 @@ module Agency
         end
         # Slowly die.
         slowly_die
+        # Return updated fitness.
+        @fitness
     end
 
     # Returns true if this agent's fitness has dropped to zero or below, else

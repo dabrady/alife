@@ -12,7 +12,7 @@ require 'gosu'
  "Food"].each {|file| require_relative file}
 
 class ALife2 < Gosu::Window
-    attr_reader :agents, :env
+    attr_reader :agents, :env, :Henry
 	def initialize(goal=Food, agent=BasicAgent, brain=BasicNet)
 		# Create a WIDTH x HEIGHT non-fullscreen window.
 		super Params::WINDOW_WIDTH, Params::WINDOW_HEIGHT, false
@@ -64,7 +64,9 @@ class ALife2 < Gosu::Window
         end
 
         # Henry, an agent whom we will monitor throughout the duration.
-        @Henry = @agents[rand(0..@agents.size)]
+        @Henry = @agents[rand(0...@agents.size)]
+        # Identify Henry.
+        @Henry.sprite = Gosu::Image.new(self, "henry.bmp", false)
         puts @Henry.report(@population[@Henry])
 
         # Average fitness per generation (used in graphing)
@@ -227,6 +229,7 @@ class ALife2 < Gosu::Window
 end
 
 sim = ALife2.new(Food, SeekingAgent, SeekingNet)
+# h = sim.Henry
 sim.show
 
 

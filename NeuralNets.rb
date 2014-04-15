@@ -8,8 +8,7 @@ require_relative "Network"
 
 class BasicNet; include Network
     attr_reader :num_inputs, :num_outputs, :num_hidden_layers,
-                :num_per_hidden, :max_weight, :num_weights
-    attr_accessor :layers
+                :num_per_hidden, :max_weight, :num_weights, :layers
 
     def initialize(agent=nil,
                    num_inputs=Params::NUM_INPUTS,
@@ -185,21 +184,33 @@ class SeekingNet < BasicNet
     def set_weights(weights)
          # Current index of 'weights'
         index = -1
+
         # There might be a better way to do this...
         # @layers.each do |layer|
         #     layer = layer.map {index += 1; weights[index]}            
         # end
         
         # Replace the nonzero weights in the summation layer.
-        @layer[0] = @layer[0].map {index += 1; weights[index]}
+        @layers[0] = @layers[0].map do |w|
+            if w.zero?
+                w
+            else
+                index += 1
+                weights[index]
+            end
+        end
 
         # Skip over the winning layer; this changes everytime the network is
         # used, so we shouldn't consider it in our calculations.
 
         # Replace the nonzero weights in the output layer.
-        @layer[2] = @layer[2].map do |w|
-            index += 1
-            w.zero? ? w : weights[index]
+        @layers[2] = @layers[2].map do |w|
+            if w.zero?
+                w
+            else
+                index += 1
+                weights[index]
+            end
         end
 
         # Return self to facilitate method chaining.
@@ -213,10 +224,15 @@ class SeekingNet < BasicNet
         # stored in the @weights attribute, and that value is returned. All
         # other times, this method simply returns the value in @weights.
         @weights ||= @layers.map {|layer|
-            # This network has special weights. They're almost all zero, except
-            # the ones that matter. So we only want to return those values as
-            # the weights of this network.
-            layer.reject {|w| w.zero?}.to_a
+            # Don't count the hidden layer for reasons outlined somewhere else.
+            if not layer # hidden layer is nil at creation time
+                []
+            else
+                # This network has special weights. They're almost all zero, 
+                # except the ones that matter. So we only want to return those 
+                # values as the weights of this network.
+                layer.reject {|w| w.zero?}.to_a
+            end
         }.flatten
     end
 
@@ -242,12 +258,32 @@ class SeekingNet < BasicNet
         # Compute the standard activation for the input layer.
         outputs, net = activate_layer(inputs, input_layer, activation_fn)
 
+        ### For debugging
+        first_out = outputs
+
         # Create and process the hidden layer using a "winner takes all"
         # approach.
         hidden_layer = @layers[1] = build_winning_layer(outputs)
         outputs, net = activate_layer(outputs, hidden_layer, activation_fn)
+
+        ### For debugging
+        winning_out = outputs
+        
         # Weight the winner and return it.
         outputs, net = activate_layer(outputs, output_layer, activation_fn)
+        raise RuntimeError, "
+Original inputs:
+#{inputs}
+First output:
+#{first_out}
+Second output:
+#{winning_out}
+Input layer:
+#{input_layer}
+Hidden layer:
+#{hidden_layer}
+Output layer:
+#{output_layer}" if outputs[0,0].nan?
         return convert(outputs)[0]
     end
 end

@@ -4,6 +4,7 @@
 # 
 # This file defines a set of parameters to be used in a neural network.
 # It also monkey-patches the Array class with a new #normalize method.
+require 'matrix'
 
 module Params
     PI             = Math::PI
@@ -153,7 +154,9 @@ class Matrix
 
     # Pretty print.
     def to_s()
-        self.to_a.map(&:inspect)
+        self.to_a.map {|row|
+            row.join "\t"
+        }.join "\n"
     end
 
     # Unsure if getting the size (number of elements) of a matrix is optimized,
