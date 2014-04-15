@@ -69,6 +69,48 @@ class SeekingNet < BasicNet
               num_per_hidden, num_outputs, max_weight)
     end
 
+    ### Below was the original plan, but then I realized it wasn't suitable for
+    ### an agent who would be evolving, because upon creation of the agent,
+    ### its weights would just be reset to random ones corresponding to its
+    ### assigned genome :\
+
+    # Build a specific network based on predefined parameters.
+    # def build_network()
+    #     @layers = Array.new 3
+    #     # Create the first hidden layer, a num_per_hiddenX(num_inputs+1) matrix
+    #     # The +1 accounts for a bias vector that is horizontally concatenated
+    #     # upon creation of the layer.
+    #     @layers[0] = build_layer(@max_weight, @num_per_hidden, @num_inputs)
+        
+    #     ### NOTE: we do not create the second hidden layer until response time,
+    #     # because it is a "winner take all" layer whose only non-zero term will
+    #     # correspond to the strongest visual signal, and thus cannot be
+    #     # calculated until response time nor can it be evolved.
+
+    #     # Create output layer, a num_outputsX(num_per_hidden+1) matrix
+    #     # (again, +1 accounts for the bias) with entries corresponding to the
+    #     # positions (angles) of this agent's sensory organs.
+
+    #     # Calculate the angles of the sensory organs relative to the agent.
+    #     theta = -@agent.visual_range/2
+    #     angles = Array.new 6
+    #     angles.each_with_index do |e, i|
+    #         unless i == @num_per_hidden/2
+    #             angles[i] = theta
+    #         else
+    #             angles[i] = 0
+    #         end
+    #         theta += @agent.sensor_range[:theta]
+    #     end
+    #     layer = Matrix.row_vector angles
+    #     # Attach the bias and add the output layer to the network.
+    #     @layers[2] = layer.horiz_concat(Matrix[[1]])
+
+    #     # Calculate weights
+    #     weights # produces attribute @weights upon first invocation
+    #     @num_weights = @weights.size
+    # end
+
     # Build a specific network based on predefined parameters.
     def build_network()
         @layers = Array.new 3
@@ -76,35 +118,24 @@ class SeekingNet < BasicNet
         # The +1 accounts for a bias vector that is horizontally concatenated
         # upon creation of the layer.
         @layers[0] = build_layer(@max_weight, @num_per_hidden, @num_inputs)
-        
+
         ### NOTE: we do not create the second hidden layer until response time,
         # because it is a "winner take all" layer whose only non-zero term will
         # correspond to the strongest visual signal, and thus cannot be
-        # calculated until response time.
-
-        # Create output layer, an num_outputsX(num_per_hidden+1) matrix
-        # (again, +1 accounts for the bias) with entries corresponding to the
-        # positions (angles) of this agent's sensory organs.
-
-        # Calculate the angles of the sensory organs relative to the agent.
-        theta = -@agent.visual_range/2
-        angles = Array.new 6
-        angles.each_with_index do |e, i|
-            unless i == @num_per_hidden/2
-                angles[i] = theta
-            else
-                angles[i] = 0
-            end
-            theta += @agent.sensor_range[:theta]
-        end
-        layer = Matrix.row_vector angles
-        # Attach the bias and add the output layer to the network.
-        @layers[2] = layer.horiz_concat(Matrix[[1]])
+        # calculated until response time nor can it be evolved.
+        
+        # Create the output layer, a num_outputsX(num_per_hidden+1) matrix
+        # (again, +1 accounts for the bias). The entries are randomized in the
+        # beginning, but are intended to correspond to the positions of this
+        # agent's sensory organs. We'll see if they evolve properly.
+        @layers[2] = Matrix.row_vector(Array.new(6) {
+            rand(-@max_weight..@max_weight)
+            }).horiz_concat(Matrix[[1]])
 
         # Calculate weights
         weights # produces attribute @weights upon first invocation
         @num_weights = @weights.size
-    end
+    end    
 
     # Weight initialization function. Returns an mx(n+1) matrix whose diagonal
     # entries are randomly initialized in the range (-max_weight..max_weight),
@@ -146,6 +177,47 @@ class SeekingNet < BasicNet
         weights = Matrix.diagonal *diags
         # Don't forget to add in the bias!
         return weights.horiz_concat(Matrix.build(weights.row_size,1){1})
+    end
+
+    # Replaces the weights of this network with a given set.
+    # Takes a flat array containing weights that number the same as the nonzero
+    # weights in this network.
+    def set_weights(weights)
+         # Current index of 'weights'
+        index = -1
+        # There might be a better way to do this...
+        # @layers.each do |layer|
+        #     layer = layer.map {index += 1; weights[index]}            
+        # end
+        
+        # Replace the nonzero weights in the summation layer.
+        @layer[0] = @layer[0].map {index += 1; weights[index]}
+
+        # Skip over the winning layer; this changes everytime the network is
+        # used, so we shouldn't consider it in our calculations.
+
+        # Replace the nonzero weights in the output layer.
+        @layer[2] = @layer[2].map do |w|
+            index += 1
+            w.zero? ? w : weights[index]
+        end
+
+        # Return self to facilitate method chaining.
+        self
+    end
+
+    # Get the weights from the network.
+    def weights()
+        # This ensures the calculation is performed exactly once.
+        # The first time #weights is called, this calculation is performed and
+        # stored in the @weights attribute, and that value is returned. All
+        # other times, this method simply returns the value in @weights.
+        @weights ||= @layers.map {|layer|
+            # This network has special weights. They're almost all zero, except
+            # the ones that matter. So we only want to return those values as
+            # the weights of this network.
+            layer.reject {|w| w.zero?}.to_a
+        }.flatten
     end
 
     # Apply the feed-forward function to the entire network.

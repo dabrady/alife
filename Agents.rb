@@ -75,10 +75,6 @@ class SeekingAgent < BasicAgent
         num_weights
     end
 
-    def num_weights()
-        @num_weights ||= @brain.weights.size
-    end
-
     # Update this agent's field of view with every turn.
     def turn(this_much)
         super this_much
@@ -206,5 +202,13 @@ class SeekingAgent < BasicAgent
         move this_fast
 
         return true
+    end
+
+    def num_weights()
+        @num_weights ||= @brain.weights.size
+    end
+
+    def set_weights(weights)
+        @brain.set_weights weights
     end
 end
