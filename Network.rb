@@ -42,7 +42,7 @@ module Network
         # Create the mxn randomized weight matrix.
         w = Matrix.build(m, n) { rand (-max_weight..max_weight) }
         # Add the bias vector.
-        w.horiz_concat(Matrix.build(m,1){1})
+        w.horiz_concat(Matrix.build(m,1){Params::BIAS})
     end
 
     # Apply the feed-forward function to a layer of the network.
@@ -54,7 +54,7 @@ module Network
     def activate_layer(inputs,
                        weights,
                        fn=Network::ACTIVATION_FN,
-                       bias=Matrix.build(inputs.column_size, 1){1})
+                       bias=Matrix.build(inputs.column_size, 1){Params::BIAS})
         net_input = weights * inputs.vert_extend(bias)
         output = activate(net_input, fn)
         return output, net_input
@@ -98,17 +98,18 @@ module Network
         @layers.each do |layer|
             layer = layer.map {index += 1; weights[index]}            
         end
+        # Update attributes.
+        weights
         # Return self to facilitate method chaining.
         self
     end
 
     # Get the weights from the network.
+    # We recalculate on the spot, since the weights are dynamic.
     def weights()
-        # This ensures the calculation is performed exactly once.
-        # The first time #weights is called, this calculation is performed and
-        # stored in the @weights attribute, and that value is returned. All
-        # other times, this method simply returns the value in @weights.
-        @weights ||= @layers.map {|layer| layer.to_a}.flatten
+        @weights = @layers.map {|layer| layer.to_a}.flatten
+        @num_weights = @weights.size
+        return @weights
     end
 
     # Write out weights (a matrix, vector, anything that can be converted to
@@ -118,6 +119,10 @@ module Network
             csv << weights.to_a
         end
         true
+    end
+
+    def to_s()
+        "#<#{self.class}: @num_inputs=#{@num_inputs}, @num_outputs=#{@num_outputs}, @num_weights=#{@num_weights}, @layers=#{@layers}"
     end
 end
 

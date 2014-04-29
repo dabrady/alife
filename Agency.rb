@@ -39,6 +39,7 @@ module Agency
         "#{self.to_s}
         Age: #{@age}
         Genetics: #{genome}
+        Brain: #{@brain}
         Goals reached: #{@goals_reached}\n"
     end
 

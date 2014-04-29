@@ -156,8 +156,8 @@ class GenAlg
 			# Mate them.
 			fred, george = crossover(mom, dad)
 			# (Potentially) Mutate the offspring.
-			mutate(fred)
-			mutate(george)
+			mutate fred
+			mutate george
 
 			# Now add the twins to the new generation.
 			new_pop.push fred, george

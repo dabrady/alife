@@ -55,13 +55,13 @@ class BasicAgent; include Agency
 end
 
 class SeekingAgent < BasicAgent
-    attr_reader :sensors, :sensor_range, :visual_range, :field_of_view
+    attr_reader :sensors, :sensor_range, :visual_range, :field_of_view, :brain
     def initialize(window,
                    neural_net=SeekingNet,
                    num_sensors=Params::AGENT_NUM_SENSORS)
         super window
         
-        # An array of sensory organs.
+        # A rudimentary visual system.
         @sensors = Array.new num_sensors
         @visual_range = Params::AGENT_VISUAL_RANGE
         @sensor_range = {:theta=>Params::AGENT_SENSOR_RANGE_THETA,

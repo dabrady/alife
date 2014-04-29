@@ -35,21 +35,19 @@ class ALife2 < Gosu::Window
         @agents = Array.new(@num_agents) { agent.new(self, brain) }
         # The environment
         @env = Array.new(@num_goals) { goal.new self }
-        # Reverse look table for environment.
+        # Reverse look-up table for environment.
         @ENV_TABLE = {}
         @env.each_with_index do |goal, i|
             @ENV_TABLE[goal] = i
         end
 
-        # Number of weights in the neural net of each agent.
-        # Assumes a uniform population (all Agents are the same type).
-        @num_weights = @agents[0].num_weights
-
         # Create the genetic algorithm for the simulation.
+        # Number of weights in the neural net of each agent is assumed to be
+        # the same if all Agents are the same type.
         @GA = GenAlg.new(@num_agents,
                          Params::MUTATION_RATE,
                          Params::XOVER_RATE,
-                         @num_weights)
+                         @agents[0].num_weights)
         # The population of agents and their genomes
         @population = {}
         # Get the chromosomes/genomes of the GA, one for each agent.
@@ -67,7 +65,7 @@ class ALife2 < Gosu::Window
         @Henry = @agents[rand(0...@agents.size)]
         # Identify Henry.
         @Henry.sprite = Gosu::Image.new(self, "henry.bmp", false)
-        puts @Henry.report(@population[@Henry])
+        puts @Henry.report(@population[@Henry]), "\n"
 
         # Average fitness per generation (used in graphing)
         @fitness_averages = []
@@ -128,7 +126,7 @@ class ALife2 < Gosu::Window
             # Time to run the GA and update the agents with new brains.
 
             # Keep track of Henry.
-            puts @Henry.report(@population[@Henry])
+            puts @Henry.report(@population[@Henry]), "\n"
 
             # Increment the generation counter.
             @generation += 1
@@ -160,6 +158,8 @@ class ALife2 < Gosu::Window
         end
         # Tick.
         @ticks += 1
+
+        quit if @generation >= Params::END_OF_THE_WORLD
         return true
     end
 
@@ -211,9 +211,13 @@ class ALife2 < Gosu::Window
     def button_down(id)
         # Exit simulation on ESCAPE
         if id == Gosu::KbEscape
-            save_stats
-            close
+            quit
         end
+    end
+
+    def quit()
+        save_stats
+        close
     end
 
     private

@@ -24,6 +24,7 @@ module Params
     NUM_GOALS      = 40
     NUM_AGENTS     = 30
     NUM_TICKS      = 1800 # 60/sec = 30 sec generations
+    END_OF_THE_WORLD = 2500 # max number of generations the simulation will simulate
     FOOD_SCALE     = 0.5
     FOOD_WIDTH     = 30 # pixel width of Food sprite; used for food detection by agents
     BASE_FITNESS   = 375.0

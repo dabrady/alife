@@ -63,7 +63,7 @@ class SeekingNet < BasicNet
                    num_hidden_layers=2, # Specific to this network
                    num_per_hidden=num_inputs, # same as num_inputs
                    num_outputs=1, # Specific to this network
-                   max_weight=Params::MAX_WEIGHT)
+                   max_weight=1/Math.sqrt(num_inputs))
         super(agent, num_inputs, num_hidden_layers,
               num_per_hidden, num_outputs, max_weight)
     end
@@ -129,7 +129,7 @@ class SeekingNet < BasicNet
         # agent's sensory organs. We'll see if they evolve properly.
         @layers[2] = Matrix.row_vector(Array.new(6) {
             rand(-@max_weight..@max_weight)
-            }).horiz_concat(Matrix[[1]])
+            }).horiz_concat(Matrix[[Params::BIAS]])
 
         # Calculate weights
         weights # produces attribute @weights upon first invocation
@@ -144,7 +144,7 @@ class SeekingNet < BasicNet
         # Create a square weight matrix with randomized diagonals.
         w = Matrix.diagonal( *Array.new(m){rand(-max_weight..max_weight)} )
         # Add the bias vector.
-        w.horiz_concat(Matrix.build(m,1){1})
+        w.horiz_concat(Matrix.build(m,1){Params::BIAS})
     end
 
     # Create the second hidden layer of the network based on the inputs.
@@ -173,9 +173,9 @@ class SeekingNet < BasicNet
         # a column vector whose only nonzero term is the weighted, winning
         # input. This equates to having only one 'neuron' in the layer fire,
         # the one that received the strongest input signal.
-        weights = Matrix.diagonal *diags
+        w = Matrix.diagonal *diags
         # Don't forget to add in the bias!
-        return weights.horiz_concat(Matrix.build(weights.row_size,1){1})
+        return w.horiz_concat(Matrix.build(w.row_size,1){1})
     end
 
     # Replaces the weights of this network with a given set.
@@ -184,11 +184,6 @@ class SeekingNet < BasicNet
     def set_weights(weights)
          # Current index of 'weights'
         index = -1
-
-        # There might be a better way to do this...
-        # @layers.each do |layer|
-        #     layer = layer.map {index += 1; weights[index]}            
-        # end
         
         # Replace the nonzero weights in the summation layer.
         @layers[0] = @layers[0].map do |w|
@@ -213,17 +208,15 @@ class SeekingNet < BasicNet
             end
         end
 
+        # Update attributes.
+        weights
         # Return self to facilitate method chaining.
         self
     end
 
     # Get the weights from the network.
     def weights()
-        # This ensures the calculation is performed exactly once.
-        # The first time #weights is called, this calculation is performed and
-        # stored in the @weights attribute, and that value is returned. All
-        # other times, this method simply returns the value in @weights.
-        @weights ||= @layers.map {|layer|
+        @weights = @layers.map {|layer|
             # Don't count the hidden layer for reasons outlined somewhere else.
             if not layer # hidden layer is nil at creation time
                 []
@@ -234,6 +227,8 @@ class SeekingNet < BasicNet
                 layer.reject {|w| w.zero?}.to_a
             end
         }.flatten
+        @num_weights = @weights.size
+        return @weights
     end
 
     # Apply the feed-forward function to the entire network.
@@ -271,19 +266,6 @@ class SeekingNet < BasicNet
         
         # Weight the winner and return it.
         outputs, net = activate_layer(outputs, output_layer, activation_fn)
-        raise RuntimeError, "
-Original inputs:
-#{inputs}
-First output:
-#{first_out}
-Second output:
-#{winning_out}
-Input layer:
-#{input_layer}
-Hidden layer:
-#{hidden_layer}
-Output layer:
-#{output_layer}" if outputs[0,0].nan?
         return convert(outputs)[0]
     end
 end
