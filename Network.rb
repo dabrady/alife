@@ -7,7 +7,7 @@
 
 require_relative "Params"
 require 'matrix' # also defines Vector
-require 'CSV'
+require 'csv'
 
 module Network
       # The activation function.
